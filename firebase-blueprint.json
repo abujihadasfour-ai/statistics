@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "User profile for a student",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "grade": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "grade", "role"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "A student's calculation submission",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "grade": { "type": "string" },
+        "score": { "type": "number" },
+        "data": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["studentId", "studentName", "score"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "Student",
+      "description": "Student profiles"
+    },
+    "submissions/{submissionId}": {
+      "schema": "Submission",
+      "description": "Student scores and answers"
+    }
+  }
+}
